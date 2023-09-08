@@ -1,9 +1,23 @@
 import Photograph from "../components/Photograph";
-export default function Home({ photos }) {
+import { useState, useEffect } from "react";
+
+export default function Home() {
+    const [photos, setPhotos] = useState(new Array());
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        async function loadPhoto() {
+            const url = 'http://localhost:3000/portfolio';
+            const fetchRes = await fetch(url, { method: 'GET' });
+            const result = await fetchRes.json();
+            setPhotos(result.photos);
+            setIsLoading(false);
+        }
+        loadPhoto();
+    }, [])
     return (
         <div className="Home">
             <h1>Home page</h1>
-            {photos.map((p, idx) => <Photograph key={idx} photo={p} />)}
+            {!isLoading && photos.map(p => <Photograph key={p._id} photo={p} />)}
         </div>
     );
 }

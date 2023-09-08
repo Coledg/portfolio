@@ -1,9 +1,11 @@
 import express from 'express'
-import { getAllPhotos } from './utils/database.mjs';
+import cors from 'cors'
+import { getAllPhotos } from './utils/database.mjs'
 const app = express()
+app.use(cors())
 
 app.get('/portfolio', async (req, res) => {
-    const photos = await getAllPhotos;
+    const photos = await getAllPhotos();
     res.send({ photos });
 })
 
@@ -30,14 +32,6 @@ app.put('/portfolio/:id', (req, res) => {
 app.delete('/portfolio/:id', (req, res) => {
     res.send("Deleteing item")
 })
-
-
-
-
-
-
-
-app.put('/')
 
 app.listen(3000, () => {
     console.log('Listening on local port 3000')
