@@ -1,8 +1,10 @@
 import express from 'express'
+import { getAllPhotos } from './utils/database.mjs';
 const app = express()
 
-app.get('/portfolio', (req, res) => {
-    res.send("Portfolio get");
+app.get('/portfolio', async (req, res) => {
+    const photos = await getAllPhotos;
+    res.send({ photos });
 })
 
 app.post('/portfolio', (req, res) => {
