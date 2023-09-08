@@ -1,7 +1,8 @@
 import Photograph from "../components/Photograph";
 import { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 
-export default function Home() {
+export default function Home({ addItem }) {
     const [photos, setPhotos] = useState(new Array());
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
@@ -16,7 +17,8 @@ export default function Home() {
     }, [])
     return (
         <div className="Home">
-            <h1>Home page</h1>
+            <h1>Portfolio</h1>
+            <Button variant="outlined" onClick={addItem}>Add photo</Button>
             {!isLoading && photos.map(p => <Photograph key={p._id} photo={p} />)}
         </div>
     );

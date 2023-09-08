@@ -1,15 +1,17 @@
 import express from 'express'
 import cors from 'cors'
-import { getAllPhotos } from './utils/database.mjs'
+import { getAllPhotos, addNewPhoto } from './utils/database.mjs'
 const app = express()
 app.use(cors())
+app.use(express.json());
 
 app.get('/portfolio', async (req, res) => {
     const photos = await getAllPhotos();
     res.send({ photos });
 })
 
-app.post('/portfolio', (req, res) => {
+app.post('/portfolio', async (req, res) => {
+    await addNewPhoto(req.body.details);
     res.send("Portfolio post");
 })
 

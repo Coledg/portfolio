@@ -7,3 +7,8 @@ export const getAllPhotos = async () => {
     const photos = await Photo.find({});
     return photos
 }
+
+export const addNewPhoto = async (details) => {
+    const newPhoto = new Photo({ ...details });
+    await newPhoto.save();
+}
