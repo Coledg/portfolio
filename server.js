@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { getAllPhotos, addNewPhoto } from './utils/database.mjs'
+import { getAllPhotos, addNewPhoto, deletePhoto } from './utils/database.mjs'
 const app = express()
 app.use(cors())
 app.use(express.json());
@@ -31,8 +31,10 @@ app.put('/portfolio/:id', (req, res) => {
     res.send("Portfolio patch req");
 })
 
-app.delete('/portfolio/:id', (req, res) => {
-    res.send("Deleteing item")
+app.delete('/portfolio/:id', async (req, res) => {
+    const { id } = req.params;
+    await deletePhoto(id);
+    res.send(`Delete photo with id ${id}`);
 })
 
 app.listen(3000, () => {

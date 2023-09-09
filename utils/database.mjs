@@ -12,3 +12,7 @@ export const addNewPhoto = async (details) => {
     const newPhoto = new Photo({ ...details });
     await newPhoto.save();
 }
+
+export const deletePhoto = async (id) => {
+    await Photo.findByIdAndDelete(id);
+}

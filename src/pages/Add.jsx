@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 export default function Add({ backToHome }) {
     const [details, setDetails] = useState({});
@@ -24,21 +24,57 @@ export default function Add({ backToHome }) {
         }
     }
     return (
-        <div className="Add">
+        <Box sx={{
+            width: "400px",
+            color: "white",
+            border: "3px solid",
+            borderColor: "#42a5f5",
+            bgcolor: "dark",
+            borderRadius: "10px",
+        }}
+            className="Add">
             <h1>Add new photo</h1>
             <div>
-                <TextField label="Title" color="primary" name='title' onChange={fillDetails} focused />
+                <TextField
+                    sx={{ mb: "20px", input: { color: "white" } }}
+                    id="Title"
+                    label="Title"
+                    color="primary"
+                    name='title'
+                    onChange={fillDetails}
+                    focused />
             </div>
             <div>
-                <TextField label="Image Url" color="primary" name='src' onChange={fillDetails} focused />
+                <TextField
+                    sx={{ mb: "20px", input: { color: "white" } }}
+                    id="Url"
+                    label="Image URL"
+                    color="primary"
+                    name='src'
+                    onChange={fillDetails}
+                    focused />
             </div>
             <div>
-                <TextField label="Alt" color="primary" name='alt' onChange={fillDetails} focused />
+                <TextField
+                    sx={{ mb: "20px", input: { color: "white" } }}
+                    id="Alt"
+                    label="Alt"
+                    color="primary"
+                    name='alt'
+                    onChange={fillDetails}
+                    focused />
             </div>
             <div>
-                <TextField label="Owner" color="primary" name='owner' onChange={fillDetails} focused />
+                <TextField
+                    sx={{ mb: "20px", input: { color: "white" } }}
+                    id="Photographer"
+                    label="Photographer"
+                    color="primary"
+                    name='photographer'
+                    onChange={fillDetails}
+                    focused />
             </div>
-            <Button variant="outlined" onClick={submitPhoto}>Submit</Button>
-        </div>
+            <Button sx={{ mb: "20px" }} color="primary" variant="outlined" onClick={submitPhoto}>Submit</Button>
+        </Box>
     );
 }

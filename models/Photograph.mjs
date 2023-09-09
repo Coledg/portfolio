@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 
 const photoSchema = new Schema(
     {
-        title: String,
-        src: String,
+        title: {
+            type: String,
+            required: [true, "Title is a required field"]
+        },
+        src: {
+            type: String,
+            required: [true, "Img src is a required field"]
+        },
         alt: String,
-        owner: String
+        photographer: String
     }
 )
 
